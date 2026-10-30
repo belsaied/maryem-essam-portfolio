@@ -20,35 +20,12 @@
       <div class="about-visual reveal-item reveal-stagger-1">
         <div class="editorial-portrait-card">
           <div class="card-inner">
-            <!-- Editorial Identity Dossier Card -->
-            <div class="creator-specimen-box">
-              <div class="specimen-header">
-                <span class="specimen-code">SPEC_ID // 01</span>
-                <span class="specimen-brand">THE SOCIAL EDIT</span>
-              </div>
-
-              <div class="specimen-centerpiece">
-                <div class="specimen-monogram-seal">
-                  <span class="seal-letters">ME</span>
-                  <span class="seal-sparkle">✦</span>
-                </div>
-                <h3 class="specimen-name">MARYEM ESSAM</h3>
-                <span class="specimen-role-pill">SOCIAL MEDIA SPECIALIST &amp; MODERATOR</span>
-              </div>
-
-              <div class="specimen-credentials-list">
-                <div class="specimen-cred-item">
-                  <span class="cred-icon">🎓</span>
-                  <span class="cred-text">Faculty of Commerce — Benha University</span>
-                </div>
-                <div class="specimen-cred-item">
-                  <span class="cred-icon">📜</span>
-                  <span class="cred-text">Marketing Scale Set Certification</span>
-                </div>
-                <div class="specimen-cred-item">
-                  <span class="cred-icon">🛍️</span>
-                  <span class="cred-text">Sales Experience — SHEIN Platform</span>
-                </div>
+            <!-- Visual Placeholder Frame -->
+            <div class="card-photo-box">
+              <div class="photo-placeholder-inner">
+                <span class="editorial-initials">ME</span>
+                <span class="editorial-caption">Maryem Essam</span>
+                <span class="editorial-subcaption">Visual &amp; Voice Stylist</span>
               </div>
             </div>
 
@@ -196,119 +173,50 @@
     gap: 1.25rem;
   }
 
-  .creator-specimen-box {
+  .card-photo-box {
     width: 100%;
-    background: linear-gradient(135deg, #FFFDF8 0%, #F5EFE3 100%);
-    border: var(--border-bold);
+    height: 320px;
+    background: linear-gradient(135deg, #FAF3E7 0%, #D9E5D1 100%);
+    border: var(--border-thin);
     border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-offset-sm);
-    padding: 1.5rem 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .specimen-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: var(--font-heading);
-    font-size: 0.6875rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    color: var(--color-text-muted);
-    border-bottom: 1px dashed var(--color-border-subtle);
-    padding-bottom: 0.6rem;
-  }
-
-  .specimen-brand {
-    color: var(--color-accent);
-  }
-
-  .specimen-centerpiece {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.5rem;
-  }
-
-  .specimen-monogram-seal {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background-color: var(--color-card-bg);
-    border: var(--border-bold);
-    box-shadow: 3px 3px 0px var(--color-accent);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-bottom: 0.25rem;
+    overflow: hidden;
   }
 
-  .seal-letters {
-    font-family: var(--font-heading);
-    font-size: 1.85rem;
-    font-weight: 900;
-    color: var(--color-text-primary);
-    letter-spacing: -0.05em;
-    line-height: 1;
-  }
-
-  .seal-sparkle {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    font-size: 0.85rem;
-    color: var(--color-highlight);
-  }
-
-  .specimen-name {
-    font-size: 1.35rem;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    color: var(--color-text-primary);
-  }
-
-  .specimen-role-pill {
-    display: inline-block;
-    font-family: var(--font-heading);
-    font-size: 0.6875rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    padding: 0.25rem 0.65rem;
-    background-color: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-pill);
-    color: var(--color-text-primary);
-  }
-
-  .specimen-credentials-list {
+  .photo-placeholder-inner {
+    text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding-top: 0.75rem;
-    border-top: 1px dashed var(--color-border-subtle);
-  }
-
-  .specimen-cred-item {
-    display: flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 0.8125rem;
-    color: var(--color-text-primary);
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-border-subtle);
-    padding: 0.45rem 0.75rem;
-    border-radius: var(--radius-xs);
-    font-weight: 600;
+    justify-content: center;
   }
 
-  .cred-icon {
-    font-size: 0.95rem;
+  .editorial-initials {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: var(--color-text-primary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .editorial-caption {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+
+  .editorial-subcaption {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
   }
 
   .badge-quote {

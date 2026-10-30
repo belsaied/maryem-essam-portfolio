@@ -85,65 +85,32 @@ import { siteConfig } from '../data/portfolio';
       <!-- Secondary Soft Sage Angular Frame -->
       <div class="sage-backdrop-card" aria-hidden="true"></div>
 
-      <!-- Main Brand Emblem Frame Container -->
+      <!-- Main Portrait Frame Container -->
       <div class="portrait-editorial-frame">
         <div class="portrait-header">
           <span class="frame-dot red"></span>
           <span class="frame-dot yellow"></span>
           <span class="frame-dot green"></span>
-          <span class="frame-caption">THE_SOCIAL_EDIT // BRAND_ID</span>
+          <span class="frame-caption">THE_SOCIAL_EDIT // EDITION_01</span>
         </div>
 
-        <!-- Professional Editorial Brand Centerpiece -->
+        <!-- Artistic Monogram Emblem -->
         <div class="portrait-canvas">
-          <div class="brand-emblem-composition">
-            <!-- Top Label -->
-            <div class="emblem-top-tag">
-              <span class="emblem-brand-name">THE SOCIAL EDIT</span>
-              <span class="emblem-edition">ED. '26</span>
+          <div class="placeholder-graphic">
+            <!-- Editorial Monogram Stamp -->
+            <div class="canvas-monogram">ME</div>
+            <div class="canvas-rings">
+              <svg viewBox="0 0 200 200" class="ring-svg">
+                <circle cx="100" cy="100" r="85" fill="none" stroke="#171717" stroke-width="2" stroke-dasharray="8 6"/>
+                <circle cx="100" cy="100" r="65" fill="none" stroke="#F45B35" stroke-width="2"/>
+              </svg>
             </div>
-
-            <!-- Central Monogram & Engagement Wave Graphic -->
-            <div class="emblem-core">
-              <div class="monogram-badge">
-                <span class="monogram-letters">ME<span class="monogram-dot">.</span></span>
-                <!-- Concentric Orbital SVG Rings -->
-                <svg viewBox="0 0 160 160" class="monogram-orbit-svg" aria-hidden="true">
-                  <circle cx="80" cy="80" r="72" fill="none" stroke="#171717" stroke-width="1.5" stroke-dasharray="4 4" />
-                  <circle cx="80" cy="80" r="62" fill="none" stroke="#F45B35" stroke-width="1.5" />
-                  <circle cx="80" cy="80" r="50" fill="none" stroke="#F5C94A" stroke-width="1.5" stroke-dasharray="8 6" />
-                </svg>
-              </div>
-
-              <!-- Animated Social Engagement Soundwave / Waveform -->
-              <div class="engagement-waveform" aria-hidden="true">
-                <span class="wave-bar bar-1"></span>
-                <span class="wave-bar bar-2"></span>
-                <span class="wave-bar bar-3"></span>
-                <span class="wave-bar bar-4"></span>
-                <span class="wave-bar bar-5"></span>
-                <span class="wave-bar bar-6"></span>
-                <span class="wave-bar bar-7"></span>
-              </div>
-            </div>
-
-            <!-- Creator Nameplate -->
-            <div class="emblem-nameplate">
-              <span class="nameplate-title">MARYEM ESSAM</span>
-              <span class="nameplate-subtitle">Social Media Specialist &amp; Moderator</span>
-            </div>
-
-            <!-- Micro Competency Pills -->
-            <div class="emblem-pills-row">
-              <span class="emblem-pill">✦ STRATEGIC COPY</span>
-              <span class="emblem-pill">✦ COMMUNITY CARE</span>
-              <span class="emblem-pill">✦ SALES MINDSET</span>
-            </div>
-
-            <!-- Live Status Footer Badge -->
-            <div class="emblem-live-status">
-              <span class="status-indicator-dot"></span>
-              <span class="status-label">ACTIVE // OPEN FOR ROLES &amp; PROJECTS</span>
+            <div class="placeholder-tagline">
+              <span class="tagline-badge">MARYEM ESSAM</span>
+              <p class="tagline-instruction">
+                THE SOCIAL EDIT<br />
+                <span class="subtext">Social Media Specialist &amp; Moderator</span>
+              </p>
             </div>
           </div>
         </div>
@@ -432,191 +399,90 @@ import { siteConfig } from '../data/portfolio';
     color: var(--color-text-muted);
   }
 
-  /* Portrait / Emblem Canvas */
+  /* Portrait Canvas */
   .portrait-canvas {
-    min-height: 410px;
-    background: linear-gradient(145deg, #FFFDF8 0%, #F5EDE0 100%);
+    height: 380px;
+    background: linear-gradient(145deg, #FFFDF8, #F1E9DA);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0 0 var(--radius-md) var(--radius-md);
     overflow: hidden;
-    padding: 1.5rem 1.25rem;
   }
 
-  .brand-emblem-composition {
+  .placeholder-graphic {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    width: 100%;
-    position: relative;
-    z-index: 2;
-    gap: 1.15rem;
+    justify-content: center;
+    padding: 2rem 1.5rem;
   }
 
-  .emblem-top-tag {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .canvas-rings {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    pointer-events: none;
+  }
+
+  .ring-svg {
     width: 100%;
-    padding: 0 0.5rem;
+    height: 100%;
+  }
+
+  .canvas-monogram {
     font-family: var(--font-heading);
-    font-size: 0.6875rem;
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--color-text-primary);
+    letter-spacing: -0.06em;
+    margin-bottom: 1.5rem;
+    z-index: 2;
+    text-shadow: 3px 3px 0px #F5C94A;
+  }
+
+  .placeholder-tagline {
+    z-index: 2;
+    margin-top: auto;
+  }
+
+  .tagline-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--color-text-primary);
+    color: #FFFFFF;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
     font-weight: 800;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius-xs);
+    margin-bottom: 0.5rem;
+  }
+
+  .tagline-instruction {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+
+  .tagline-instruction .subtext {
+    font-size: 0.6875rem;
     color: var(--color-text-muted);
   }
 
-  .emblem-brand-name {
-    color: var(--color-accent);
-  }
-
-  /* Monogram Badge & Waveform */
-  .emblem-core {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0.25rem 0;
-  }
-
-  .monogram-badge {
-    position: relative;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    background-color: var(--color-card-bg);
-    border: var(--border-bold);
-    box-shadow: 4px 4px 0px var(--color-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-  }
-
-  .monogram-letters {
-    font-family: var(--font-heading);
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: var(--color-text-primary);
-    letter-spacing: -0.05em;
-    line-height: 1;
-  }
-
-  .monogram-dot {
-    color: var(--color-accent);
-  }
-
-  .monogram-orbit-svg {
-    position: absolute;
-    width: 175px;
-    height: 175px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    animation: spinSlow 30s linear infinite;
-  }
-
-  /* Engagement Soundwave / Pulse */
-  .engagement-waveform {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    height: 24px;
-    margin-top: 1rem;
-    padding: 4px 12px;
-    background-color: rgba(23, 23, 23, 0.05);
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--color-border-subtle);
-  }
-
-  .wave-bar {
-    width: 3px;
-    background-color: var(--color-accent);
-    border-radius: 2px;
-    animation: waveBounce 1.2s ease-in-out infinite alternate;
-  }
-
-  .bar-1 { height: 8px; animation-delay: 0.1s; }
-  .bar-2 { height: 16px; animation-delay: 0.3s; }
-  .bar-3 { height: 22px; animation-delay: 0.15s; }
-  .bar-4 { height: 12px; animation-delay: 0.4s; }
-  .bar-5 { height: 18px; animation-delay: 0.25s; }
-  .bar-6 { height: 10px; animation-delay: 0.35s; }
-  .bar-7 { height: 14px; animation-delay: 0.05s; }
-
-  @keyframes waveBounce {
-    0% { transform: scaleY(0.4); }
-    100% { transform: scaleY(1.1); }
-  }
-
-  /* Nameplate */
-  .emblem-nameplate {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .nameplate-title {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    color: var(--color-text-primary);
-    text-transform: uppercase;
-  }
-
-  .nameplate-subtitle {
-    font-size: 0.8125rem;
-    color: var(--color-text-secondary);
+  .tagline-instruction code {
+    background-color: rgba(23, 23, 23, 0.08);
+    padding: 2px 4px;
+    border-radius: 3px;
     font-weight: 600;
-  }
-
-  /* Micro Pills */
-  .emblem-pills-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.4rem;
-  }
-
-  .emblem-pill {
-    font-family: var(--font-heading);
-    font-size: 0.625rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    padding: 0.25rem 0.55rem;
-    background-color: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xs);
-    color: var(--color-text-primary);
-  }
-
-  /* Live Status */
-  .emblem-live-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.35rem 0.75rem;
-    background-color: var(--color-text-primary);
-    border-radius: var(--radius-pill);
-    color: #FFFFFF;
-    font-family: var(--font-heading);
-    font-size: 0.65625rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-  }
-
-  .status-indicator-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #22C55E;
-    animation: pulseSubtle 1.8s infinite ease-in-out;
   }
 
   /* Floating Stickers */
