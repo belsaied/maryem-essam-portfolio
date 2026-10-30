@@ -1,43 +1,73 @@
-# Astro Starter Kit: Minimal
+# Maryem Essam — THE SOCIAL EDIT
+## Premium Personal Portfolio Website
 
-```sh
-npm create astro@latest -- --template minimal
+An editorial-inspired personal brand portfolio website designed for **Maryem Essam**, Social Media Specialist and Moderator. Built with **Astro**, **TypeScript**, and modern semantic CSS.
+
+---
+
+## 🎨 Creative Concept & Visual Identity
+
+- **Main Tagline**: *"I MAKE PEOPLE STOP & LOOK."*
+- **Supporting Statement**: *"Creative content. Meaningful conversations. Better brand connections."*
+- **Art Direction**: Boutique creative agency combined with contemporary magazine layout. Warm paper background (`#F6F0E6`), ink black typography (`#171717`), electric tangerine accents (`#F45B35`), soft sage secondary sections (`#D9E5D1`), and signal yellow highlights (`#F5C94A`).
+- **Typography**: Space Grotesk (headings), DM Sans (body & UI), Playfair Display (editorial italic emphasis).
+
+---
+
+## 🚀 Quick Start (Run Locally)
+
+Make sure you have Node.js (v20+) and npm installed.
+
+```bash
+# 1. Navigate to the project directory
+cd C:\Users\Admin\.gemini\antigravity\scratch\maryem-essam-portfolio
+
+# 2. Install dependencies (already installed during setup)
+npm install
+
+# 3. Start development server
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open your browser at `http://localhost:4321`.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📦 Production Build
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+# Generate static HTML, CSS, and assets in the dist/ folder
+npm run build
+
+# Preview the static build locally
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🌐 Deploying to GitHub Pages
 
-Any static assets, like images, can be placed in the `public/` directory.
+The project includes an automated GitHub Actions deployment workflow at `.github/workflows/deploy.yml`.
 
-## 🧞 Commands
+### Deployment Steps:
 
-All commands are run from the root of the project, from a terminal:
+1. Create a new repository on GitHub (e.g. `the-social-edit` or `maryem-essam-portfolio`).
+2. Add your GitHub remote and push:
+   ```bash
+   git remote add origin https://github.com/<YOUR-USERNAME>/<YOUR-REPO-NAME>.git
+   git push -u origin main
+   ```
+3. In your GitHub repository:
+   - Go to **Settings** > **Pages**.
+   - Under **Build and deployment** > **Source**, select **GitHub Actions**.
+4. The workflow will automatically build and publish the site.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
+## ✏️ Editing Portfolio Information
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+All personal details, services, sample work, credentials, and FAQs are centralized in:
+
+📂 `src/data/portfolio.ts`
+
+To update Maryem's portrait photograph, replace the placeholder in `src/components/Hero.astro` or place `maryem.jpg` in `public/` and reference it.
