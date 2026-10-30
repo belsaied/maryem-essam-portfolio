@@ -1,0 +1,106 @@
+---
+interface Props {
+  reverse?: boolean;
+  theme?: 'dark' | 'tangerine' | 'sage';
+}
+
+const { reverse = false, theme = 'tangerine' } = Astro.props;
+
+const phrases = [
+  "CREATIVE CONTENT",
+  "MEANINGFUL CONVERSATIONS",
+  "BETTER BRAND CONNECTIONS",
+  "COMMUNITY MODERATION",
+  "I MAKE PEOPLE STOP & LOOK",
+  "COMMERCE MINDSET",
+  "ACTIVE ENGAGEMENT"
+];
+---
+
+<div class={`marquee-container ${theme} ${reverse ? 'reverse' : ''}`} aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-content">
+      {phrases.map((phrase) => (
+        <span class="marquee-item">
+          <span class="phrase-text">{phrase}</span>
+          <span class="phrase-star">✦</span>
+        </span>
+      ))}
+    </div>
+    <!-- Duplicated for seamless infinite loop -->
+    <div class="marquee-content">
+      {phrases.map((phrase) => (
+        <span class="marquee-item">
+          <span class="phrase-text">{phrase}</span>
+          <span class="phrase-star">✦</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 0.85rem 0;
+    border-top: var(--border-bold);
+    border-bottom: var(--border-bold);
+    user-select: none;
+  }
+
+  .marquee-container.tangerine {
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+  }
+
+  .marquee-container.dark {
+    background-color: var(--color-text-primary);
+    color: var(--color-bg-primary);
+  }
+
+  .marquee-container.sage {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-container.reverse .marquee-track {
+    animation-direction: reverse;
+  }
+
+  .marquee-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-right: 2rem;
+  }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem;
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .phrase-star {
+    font-size: 1.1rem;
+    opacity: 0.8;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>

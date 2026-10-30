@@ -1,0 +1,340 @@
+---
+import { servicesData } from '../data/portfolio';
+---
+
+<section class="services-section section-padding" id="services" aria-label="Services Offered">
+  <div class="container">
+    <!-- Header -->
+    <div class="services-header reveal-item">
+      <div class="header-left">
+        <span class="section-tag">
+          <span class="tag-bullet">✦</span> SPECIALIZED SKILLSET
+        </span>
+        <h2 class="section-title">
+          WHAT I BRING <br />
+          <span class="font-serif-italic">to the table.</span>
+        </h2>
+      </div>
+      <div class="header-right">
+        <p class="section-subtitle">
+          Bridging creative social storytelling with commercial acumen. Each service is built to maximize brand perception and foster genuine audience engagement.
+        </p>
+      </div>
+    </div>
+
+    <!-- Four Distinct Service Compositions -->
+    <div class="services-grid">
+      {servicesData.map((service, index) => (
+        <article class={`service-card ${service.themeColor} reveal-item reveal-stagger-${index + 1}`}>
+          <!-- Card Top Bar -->
+          <div class="card-top-bar">
+            <span class="service-number">{service.number}</span>
+            <span class="service-category-badge">{service.category}</span>
+          </div>
+
+          <!-- Icon / Illustration Area -->
+          <div class="service-icon-box">
+            {service.id === 'moderation' && (
+              <svg viewBox="0 0 48 48" class="service-svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M40 8H8C5.8 8 4 9.8 4 12v20c0 2.2 1.8 4 4 4h8l8 6v-6h16c2.2 0 4-1.8 4-4V12c0-2.2-1.8-4-4-4z" />
+                <path d="M16 20h16M16 26h10" />
+              </svg>
+            )}
+
+            {service.id === 'content-creation' && (
+              <svg viewBox="0 0 48 48" class="service-svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="6" width="36" height="36" rx="6" />
+                <circle cx="18" cy="18" r="4" fill="currentColor" stroke="none" />
+                <path d="M42 32L32 22 14 40" />
+                <path d="M28 10l8 8" />
+              </svg>
+            )}
+
+            {service.id === 'social-marketing' && (
+              <svg viewBox="0 0 48 48" class="service-svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="24" cy="24" r="18" />
+                <path d="M24 6v36M6 24h36" />
+                <path d="M34 16l-10 8-6-4" />
+                <circle cx="34" cy="16" r="3" fill="currentColor" stroke="none" />
+              </svg>
+            )}
+
+            {service.id === 'sales-engagement' && (
+              <svg viewBox="0 0 48 48" class="service-svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 6h24l6 14-18 22L6 20l6-14z" />
+                <path d="M6 20h36M18 6l6 14 6-14" />
+              </svg>
+            )}
+          </div>
+
+          <!-- Content -->
+          <div class="service-body">
+            <h3 class="service-title">{service.title}</h3>
+            <p class="service-description">{service.description}</p>
+          </div>
+
+          <!-- Deliverables List -->
+          <div class="service-deliverables">
+            <span class="deliverables-heading">CORE CAPABILITIES:</span>
+            <ul class="deliverables-list">
+              {service.deliverables.map((item) => (
+                <li>
+                  <span class="bullet-check">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Bottom Footer Link -->
+          <div class="service-card-footer">
+            <a 
+              href="#contact" 
+              class="service-cta-link"
+              aria-label={`Inquire about ${service.title}`}
+            >
+              <span>Discuss This Service</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    background-color: #F8F3EA;
+    border-bottom: var(--border-thin);
+    position: relative;
+  }
+
+  .services-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  @media (min-width: 992px) {
+    .services-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-right {
+      max-width: 480px;
+    }
+  }
+
+  .tag-bullet {
+    color: var(--color-accent);
+  }
+
+  /* Grid Layout: 2x2 with Asymmetric Cards */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Individual Card Compositions */
+  .service-card {
+    border: var(--border-bold);
+    border-radius: var(--radius-md);
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-offset-md);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    position: relative;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-offset-lg);
+  }
+
+  /* Unique Card Visual Personalities */
+  .service-card.tangerine {
+    background-color: var(--color-card-bg);
+    border-top: 6px solid var(--color-accent);
+  }
+
+  .service-card.sage {
+    background-color: var(--color-card-bg);
+    border-top: 6px solid #4B6E45;
+  }
+
+  .service-card.yellow {
+    background-color: var(--color-card-bg);
+    border-top: 6px solid var(--color-highlight);
+  }
+
+  .service-card.paper {
+    background-color: var(--color-card-bg);
+    border-top: 6px solid var(--color-text-primary);
+  }
+
+  /* Top Bar */
+  .card-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-number {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: var(--color-text-primary);
+  }
+
+  .service-category-badge {
+    font-family: var(--font-heading);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.65rem;
+    background-color: var(--color-bg-primary);
+    border: var(--border-thin);
+    border-radius: var(--radius-pill);
+    color: var(--color-text-secondary);
+  }
+
+  /* Icon Box */
+  .service-icon-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border-bold);
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-offset-sm);
+  }
+
+  .service-card.tangerine .service-icon-box {
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+  }
+
+  .service-card.sage .service-icon-box {
+    background-color: var(--color-bg-secondary);
+    color: #2F4E29;
+  }
+
+  .service-card.yellow .service-icon-box {
+    background-color: var(--color-highlight-light);
+    color: #9A7606;
+  }
+
+  .service-card.paper .service-icon-box {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+
+  .service-svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Body */
+  .service-body {
+    margin-bottom: 1.75rem;
+  }
+
+  .service-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-primary);
+  }
+
+  .service-description {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  /* Deliverables */
+  .service-deliverables {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--color-border-subtle);
+    margin-bottom: 1.5rem;
+  }
+
+  .deliverables-heading {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .deliverables-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .deliverables-list li {
+    font-size: 0.8125rem;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .bullet-check {
+    color: var(--color-accent);
+    font-weight: 900;
+  }
+
+  /* Card Footer CTA */
+  .service-card-footer {
+    display: flex;
+    align-items: center;
+  }
+
+  .service-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 4px;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .service-cta-link:hover {
+    color: var(--color-accent);
+    transform: translateX(3px);
+  }
+</style>

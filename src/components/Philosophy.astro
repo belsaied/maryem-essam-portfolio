@@ -1,0 +1,194 @@
+---
+import { philosophyData } from '../data/portfolio';
+---
+
+<section class="philosophy-section section-padding" id="philosophy" aria-label="Core Working Philosophy">
+  <div class="container">
+    <!-- Big Headline Statement Banner -->
+    <div class="philosophy-statement reveal-item">
+      <span class="statement-badge">THE EDITORIAL MANIFESTO</span>
+      <h2 class="statement-title">
+        "GOOD CONTENT GETS ATTENTION. <br />
+        <span class="statement-highlight">GREAT COMMUNICATION BUILDS RELATIONSHIPS."</span>
+      </h2>
+      <p class="statement-sub">
+        Social media algorithms change constantly, but human psychology and genuine conversation remain timeless.
+      </p>
+    </div>
+
+    <!-- Three Visual Principle Columns -->
+    <div class="principles-grid">
+      {philosophyData.map((item, index) => (
+        <div class={`principle-card reveal-item reveal-stagger-${index + 1}`}>
+          <!-- Top Number Index -->
+          <div class="principle-number-box">
+            <span class="num-large">{item.number}</span>
+            <span class="num-line"></span>
+          </div>
+
+          <!-- Principle Headline -->
+          <h3 class="principle-headline">{item.title}</h3>
+          
+          <div class="principle-thesis">
+            <span class="thesis-quote">“</span>
+            <p class="thesis-text">{item.principle}</p>
+          </div>
+
+          <p class="principle-desc">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .philosophy-section {
+    background-color: var(--color-bg-primary);
+    border-bottom: var(--border-thin);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Big Statement */
+  .philosophy-statement {
+    text-align: center;
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .statement-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    border-radius: var(--radius-pill);
+    border: var(--border-thin);
+    box-shadow: var(--shadow-offset-sm);
+    margin-bottom: 1.5rem;
+  }
+
+  .statement-title {
+    font-size: clamp(1.85rem, 4.5vw, 3.25rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    margin-bottom: 1.25rem;
+  }
+
+  .statement-highlight {
+    color: var(--color-accent);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 600;
+    text-transform: none;
+  }
+
+  .statement-sub {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    color: var(--color-text-secondary);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Three Columns */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .principles-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .principle-card {
+    background-color: var(--color-card-bg);
+    border: var(--border-bold);
+    border-radius: var(--radius-md);
+    padding: 2.25rem 1.75rem;
+    box-shadow: var(--shadow-offset-md);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .principle-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-offset-lg);
+  }
+
+  .principle-number-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .num-large {
+    font-family: var(--font-heading);
+    font-size: 2.75rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--color-accent);
+    letter-spacing: -0.05em;
+  }
+
+  .num-line {
+    flex: 1;
+    height: 2px;
+    background-color: var(--color-border);
+  }
+
+  .principle-headline {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .principle-thesis {
+    position: relative;
+    padding: 1rem;
+    background-color: var(--color-bg-secondary);
+    border: var(--border-thin);
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.25rem;
+  }
+
+  .thesis-quote {
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--color-accent);
+  }
+
+  .thesis-text {
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.45;
+  }
+
+  .principle-desc {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+</style>

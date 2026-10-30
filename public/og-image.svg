@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#171717" stroke-width="0.5" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#F6F0E6"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Border Frame -->
+  <rect x="30" y="30" width="1140" height="570" rx="16" fill="none" stroke="#171717" stroke-width="4"/>
+
+  <!-- Top Badge -->
+  <rect x="70" y="70" width="220" height="42" rx="21" fill="#F45B35" stroke="#171717" stroke-width="2"/>
+  <text x="180" y="97" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">THE SOCIAL EDIT</text>
+
+  <!-- Monogram Stamp -->
+  <rect x="1000" y="70" width="130" height="50" rx="8" fill="#F5C94A" stroke="#171717" stroke-width="2"/>
+  <text x="1065" y="102" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="900" fill="#171717" text-anchor="middle">ME. ↗</text>
+
+  <!-- Main Headline -->
+  <text x="70" y="240" font-family="'Space Grotesk', sans-serif" font-size="68" font-weight="900" fill="#171717" letter-spacing="-2">
+    I MAKE PEOPLE
+  </text>
+  <text x="70" y="330" font-family="'Space Grotesk', sans-serif" font-size="76" font-weight="900" fill="#F45B35" letter-spacing="-2">
+    STOP &amp; LOOK.
+  </text>
+
+  <!-- Subheadline -->
+  <text x="70" y="410" font-family="'DM Sans', sans-serif" font-size="28" font-weight="500" fill="#625D56">
+    Creative content. Meaningful conversations. Better brand connections.
+  </text>
+
+  <!-- Creator Name & Roles -->
+  <line x1="70" y1="460" x2="1130" y2="460" stroke="#171717" stroke-width="2" stroke-opacity="0.2"/>
+  
+  <text x="70" y="520" font-family="'Space Grotesk', sans-serif" font-size="34" font-weight="800" fill="#171717">
+    Maryem Essam
+  </text>
+  <text x="70" y="555" font-family="'DM Sans', sans-serif" font-size="20" font-weight="500" fill="#625D56">
+    Social Media Specialist &amp; Moderator • Faculty of Commerce • Marketing Scale Set
+  </text>
+
+  <!-- Right Decorative Organic Shape -->
+  <path d="M 850 180 C 1050 140 1100 280 1020 380 C 950 480 820 420 800 320 Z" fill="#D9E5D1" stroke="#171717" stroke-width="3" stroke-dasharray="6,6"/>
+  <circle cx="880" cy="280" r="45" fill="#F45B35" stroke="#171717" stroke-width="2"/>
+  <text x="880" y="287" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" text-anchor="middle">ENGAGE</text>
+</svg>

@@ -1,0 +1,840 @@
+---
+import { projectsData } from '../data/portfolio';
+
+const categories = [
+  "All",
+  "Social Media Posts",
+  "Campaign Concepts",
+  "Community Engagement"
+];
+---
+
+<section class="portfolio-section section-padding" id="work" aria-label="Selected Creative Projects">
+  <div class="container">
+    <!-- Header -->
+    <div class="portfolio-header reveal-item">
+      <div class="header-content">
+        <span class="section-tag">
+          <span class="tag-spark">✦</span> CREATIVE PLAYGROUND
+        </span>
+        <h2 class="section-title">
+          IDEAS DESERVE <br />
+          <span class="font-serif-italic">to be seen.</span>
+        </h2>
+        <p class="section-subtitle">
+          A showcase of strategic social media post frameworks, community care systems, and commercial campaign concepts designed for impact.
+        </p>
+      </div>
+
+      <!-- Conceptual Work Disclaimer Badge -->
+      <div class="conceptual-notice-badge">
+        <span class="badge-icon" aria-hidden="true">💡</span>
+        <div class="badge-text">
+          <strong>Strategic Concept Lab:</strong>
+          <span>Sample frameworks illustrating creative strategy, ready for real brand deployment.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-controls reveal-item reveal-stagger-1" role="tablist" aria-label="Project filter categories">
+      {categories.map((cat, index) => (
+        <button
+          type="button"
+          class={`filter-btn ${index === 0 ? 'active' : ''}`}
+          data-category={cat}
+          role="tab"
+          aria-selected={index === 0 ? 'true' : 'false'}
+          aria-controls="projects-grid"
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid" id="projects-grid">
+      {projectsData.map((project, index) => (
+        <article 
+          class="project-card reveal-item reveal-stagger-2" 
+          data-project-category={project.category}
+          id={`project-${project.id}`}
+        >
+          <!-- Card Header & Tag -->
+          <div class="project-card-header">
+            <span class="project-tag-pill">{project.tag}</span>
+            <span class="project-category-text">{project.category}</span>
+          </div>
+
+          <!-- Visual Editorial Thumbnail / Graphic Mockup -->
+          <div class="project-preview-box" style={`--accent-color: ${project.accentColor}`}>
+            <div class="preview-backdrop-pattern"></div>
+            
+            <div class="preview-editorial-content">
+              <span class="preview-issue">CASE ARCHIVE 0{index + 1}</span>
+              <h3 class="preview-title">{project.title}</h3>
+              <div class="preview-pill-row">
+                <span class="mini-pill">{project.statusBadge}</span>
+              </div>
+            </div>
+
+            <!-- Inspect Hover Button -->
+            <button 
+              type="button" 
+              class="inspect-overlay-btn"
+              data-open-modal={project.id}
+              aria-label={`View strategic case study details for ${project.title}`}
+            >
+              <span>Inspect Strategy</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Project Summary -->
+          <div class="project-body">
+            <h4 class="project-headline">{project.title}</h4>
+            <p class="project-summary">{project.summary}</p>
+
+            <div class="project-highlights">
+              <div class="highlight-item">
+                <span class="highlight-label">OBJECTIVE:</span>
+                <span class="highlight-val">{project.objective}</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-label">TARGET AUDIENCE:</span>
+                <span class="highlight-val">{project.targetAudience}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Action Button -->
+          <div class="project-footer">
+            <button 
+              type="button" 
+              class="btn btn-secondary project-detail-btn"
+              data-open-modal={project.id}
+            >
+              <span>View Full Strategy &amp; Execution</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <!-- Interactive Project Detail Modal -->
+  <div class="project-modal-backdrop" id="project-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="project-modal-window">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-header-meta">
+          <span class="modal-badge" id="modal-category">CATEGORY</span>
+          <span class="modal-status" id="modal-status">CONCEPTUAL SHOWCASE</span>
+        </div>
+        <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close case study details">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-content">
+        <h3 class="modal-title" id="modal-title">Project Title</h3>
+        <p class="modal-summary" id="modal-summary">Summary text goes here...</p>
+
+        <!-- Strategy Specification Grid -->
+        <div class="modal-spec-grid">
+          <div class="spec-card">
+            <span class="spec-tag">01 / OBJECTIVE</span>
+            <p id="modal-objective" class="spec-text"></p>
+          </div>
+
+          <div class="spec-card">
+            <span class="spec-tag">02 / TARGET AUDIENCE</span>
+            <p id="modal-audience" class="spec-text"></p>
+          </div>
+
+          <div class="spec-card">
+            <span class="spec-tag">03 / CONTENT STRATEGY</span>
+            <p id="modal-strategy" class="spec-text"></p>
+          </div>
+
+          <div class="spec-card">
+            <span class="spec-tag">04 / CREATIVE DIRECTION</span>
+            <p id="modal-creative" class="spec-text"></p>
+          </div>
+        </div>
+
+        <!-- Execution Steps -->
+        <div class="modal-execution-section">
+          <h4 class="execution-heading">PLANNED EXECUTION &amp; DELIVERABLES</h4>
+          <ul class="execution-list" id="modal-execution"></ul>
+        </div>
+
+        <!-- Bottom Notice & Direct Contact Action -->
+        <div class="modal-cta-box">
+          <div class="modal-cta-info">
+            <strong>Interested in applying this strategy to your brand?</strong>
+            <span>Let's collaborate on custom social media campaigns tailored to your goals.</span>
+          </div>
+          <a href="#contact" class="btn btn-primary modal-action-btn" id="modal-contact-link">
+            <span>Discuss This Concept</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Inject Project Data JSON for Client Script -->
+<script type="application/json" id="portfolio-data-json" set:html={JSON.stringify(projectsData)} />
+
+<style>
+  .portfolio-section {
+    background-color: var(--color-bg-primary);
+    border-bottom: var(--border-thin);
+    position: relative;
+  }
+
+  .portfolio-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 992px) {
+    .portfolio-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-content {
+      max-width: 650px;
+    }
+  }
+
+  .tag-spark {
+    color: var(--color-accent);
+  }
+
+  /* Conceptual Notice Badge */
+  .conceptual-notice-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1.25rem;
+    background-color: var(--color-highlight-light);
+    border: var(--border-bold);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-offset-sm);
+    max-width: 440px;
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.8125rem;
+  }
+
+  .badge-text strong {
+    font-family: var(--font-heading);
+    color: var(--color-text-primary);
+  }
+
+  .badge-text span {
+    color: var(--color-text-secondary);
+    line-height: 1.35;
+  }
+
+  /* Filter Controls */
+  .filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .filter-btn {
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 1.15rem;
+    background-color: var(--color-card-bg);
+    border: var(--border-bold);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-offset-sm);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .filter-btn:hover {
+    background-color: var(--color-bg-secondary);
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    background-color: var(--color-text-primary);
+    color: #FFFFFF;
+    box-shadow: var(--shadow-offset-accent);
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 992px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Project Card */
+  .project-card {
+    background-color: var(--color-card-bg);
+    border: var(--border-bold);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-offset-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-offset-lg);
+  }
+
+  .project-card.is-hidden {
+    display: none;
+  }
+
+  .project-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: var(--border-thin);
+    background-color: #FAF5ED;
+  }
+
+  .project-tag-pill {
+    font-family: var(--font-heading);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.6rem;
+    background-color: var(--color-card-bg);
+    border: var(--border-thin);
+    border-radius: var(--radius-xs);
+    color: var(--color-accent);
+  }
+
+  .project-category-text {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  /* Visual Preview Box */
+  .project-preview-box {
+    height: 220px;
+    background: linear-gradient(135deg, #171717 0%, #2A2A2A 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #FFFFFF;
+  }
+
+  .preview-backdrop-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.12;
+    background-image: radial-gradient(circle, #FFFFFF 1px, transparent 1px);
+    background-size: 16px 16px;
+    pointer-events: none;
+  }
+
+  .preview-issue {
+    font-family: var(--font-heading);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: var(--color-highlight);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .preview-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #FFFFFF;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  }
+
+  .preview-pill-row {
+    margin-top: auto;
+  }
+
+  .mini-pill {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.5rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-xs);
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+
+  /* Inspect Overlay Button */
+  .inspect-overlay-btn {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(23, 23, 23, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    color: #FFFFFF;
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    cursor: pointer;
+  }
+
+  .project-preview-box:hover .inspect-overlay-btn,
+  .inspect-overlay-btn:focus-visible {
+    opacity: 1;
+  }
+
+  /* Project Body */
+  .project-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    flex: 1;
+  }
+
+  .project-headline {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+  }
+
+  .project-summary {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .project-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--color-border-subtle);
+  }
+
+  .highlight-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .highlight-label {
+    font-family: var(--font-heading);
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+  }
+
+  .highlight-val {
+    font-size: 0.8125rem;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+  }
+
+  /* Project Footer */
+  .project-footer {
+    padding: 1.25rem 1.5rem;
+    background-color: #FAF5ED;
+    border-top: var(--border-thin);
+  }
+
+  .project-detail-btn {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Modal System */
+  .project-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(23, 23, 23, 0.65);
+    backdrop-filter: blur(6px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-modal-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .project-modal-window {
+    background-color: var(--color-bg-primary);
+    border: var(--border-bold);
+    border-radius: var(--radius-md);
+    box-shadow: 10px 10px 0px var(--color-border);
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-modal-backdrop.is-open .project-modal-window {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.75rem;
+    border-bottom: var(--border-bold);
+    background-color: #FAF5ED;
+  }
+
+  .modal-header-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .modal-badge {
+    font-family: var(--font-heading);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.65rem;
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+    border-radius: var(--radius-xs);
+  }
+
+  .modal-status {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .modal-close-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border-bold);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-card-bg);
+    box-shadow: var(--shadow-offset-sm);
+    cursor: pointer;
+  }
+
+  .modal-content {
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--color-text-primary);
+  }
+
+  .modal-summary {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .modal-spec-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 600px) {
+    .modal-spec-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .spec-card {
+    background-color: var(--color-card-bg);
+    border: var(--border-thin);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    box-shadow: 2px 2px 0px var(--color-border);
+  }
+
+  .spec-tag {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .spec-text {
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+  }
+
+  .modal-execution-section {
+    padding-top: 1rem;
+    border-top: 1px dashed var(--color-border-subtle);
+  }
+
+  .execution-heading {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .execution-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .execution-list li {
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .execution-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+  }
+
+  .modal-cta-box {
+    background-color: var(--color-bg-secondary);
+    border: var(--border-bold);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .modal-cta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .modal-cta-info strong {
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+  }
+
+  .modal-cta-info span {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .modal-action-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Parse Project Data
+    const dataElement = document.getElementById('portfolio-data-json');
+    if (!dataElement) return;
+    const projects = JSON.parse(dataElement.textContent || '[]');
+
+    // Category Filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const selectedCategory = btn.getAttribute('data-category');
+
+        projectCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-project-category');
+          if (selectedCategory === 'All' || cardCategory === selectedCategory) {
+            card.classList.remove('is-hidden');
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+
+    // Modal Interaction
+    const modal = document.getElementById('project-modal');
+    const closeBtn = document.getElementById('modal-close-btn');
+    const openButtons = document.querySelectorAll('[data-open-modal]');
+
+    const modalTitle = document.getElementById('modal-title');
+    const modalCategory = document.getElementById('modal-category');
+    const modalSummary = document.getElementById('modal-summary');
+    const modalObjective = document.getElementById('modal-objective');
+    const modalAudience = document.getElementById('modal-audience');
+    const modalStrategy = document.getElementById('modal-strategy');
+    const modalCreative = document.getElementById('modal-creative');
+    const modalExecution = document.getElementById('modal-execution');
+    const modalContactLink = document.getElementById('modal-contact-link');
+
+    let previousActiveElement: HTMLElement | null = null;
+
+    function openProjectModal(projectId: string) {
+      const project = projects.find((p: any) => p.id === projectId);
+      if (!project) return;
+
+      previousActiveElement = document.activeElement as HTMLElement;
+
+      if (modalTitle) modalTitle.textContent = project.title;
+      if (modalCategory) modalCategory.textContent = project.category;
+      if (modalSummary) modalSummary.textContent = project.summary;
+      if (modalObjective) modalObjective.textContent = project.objective;
+      if (modalAudience) modalAudience.textContent = project.targetAudience;
+      if (modalStrategy) modalStrategy.textContent = project.strategy;
+      if (modalCreative) modalCreative.textContent = project.creativeDirection;
+
+      if (modalExecution) {
+        modalExecution.innerHTML = '';
+        project.execution.forEach((item: string) => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          modalExecution.appendChild(li);
+        });
+      }
+
+      modal?.classList.add('is-open');
+      modal?.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeBtn?.focus();
+    }
+
+    function closeProjectModal() {
+      modal?.classList.remove('is-open');
+      modal?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (previousActiveElement) {
+        previousActiveElement.focus();
+      }
+    }
+
+    openButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-open-modal');
+        if (id) openProjectModal(id);
+      });
+    });
+
+    closeBtn?.addEventListener('click', closeProjectModal);
+
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeProjectModal();
+      }
+    });
+
+    modalContactLink?.addEventListener('click', () => {
+      closeProjectModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.classList.contains('is-open')) {
+        closeProjectModal();
+      }
+    });
+  });
+</script>
