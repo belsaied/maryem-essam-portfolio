@@ -70,4 +70,4 @@ All personal details, services, sample work, credentials, and FAQs are centraliz
 
 📂 `src/data/portfolio.ts`
 
-To update Maryem's portrait photograph, replace the placeholder in `src/components/Hero.astro` or place `maryem.jpg` in `public/` and reference it.
+The site features a bespoke typographic and graphic identity system centered around Maryem's personal brand "THE SOCIAL EDIT", eliminating the need for generic stock or placeholder photos. All content can be tailored directly in `src/data/portfolio.ts`.
