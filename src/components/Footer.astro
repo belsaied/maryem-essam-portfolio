@@ -1,5 +1,6 @@
 ---
 import { siteConfig, navLinks } from '../data/portfolio';
+import { withBase } from '../utils/paths';
 ---
 
 <footer class="site-footer" id="footer" aria-label="Footer">
@@ -7,7 +8,7 @@ import { siteConfig, navLinks } from '../data/portfolio';
     <!-- Top Footer Bar -->
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#hero" class="brand-monogram" aria-label="Back to top">
+        <a href={withBase('#hero')} class="brand-monogram" aria-label="Back to top">
           ME<span class="brand-dot">.</span>
         </a>
         <p class="brand-tagline">
@@ -19,7 +20,7 @@ import { siteConfig, navLinks } from '../data/portfolio';
         <ul class="footer-links">
           {navLinks.map((link) => (
             <li>
-              <a href={link.href} class="footer-link">
+              <a href={withBase(link.href)} class="footer-link">
                 {link.label}
               </a>
             </li>
@@ -28,7 +29,7 @@ import { siteConfig, navLinks } from '../data/portfolio';
       </nav>
 
       <div class="footer-back-to-top">
-        <a href="#hero" class="btn btn-secondary back-to-top-btn" aria-label="Return to top of page">
+        <a href={withBase('#hero')} class="btn btn-secondary back-to-top-btn" aria-label="Return to top of page">
           <span>Top</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="12" y1="19" x2="12" y2="5"></line>

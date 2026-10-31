@@ -1,5 +1,6 @@
 ---
 import { servicesData } from '../data/portfolio';
+import { withBase } from '../utils/paths';
 ---
 
 <section class="services-section section-padding" id="services" aria-label="Services Offered">
@@ -89,7 +90,7 @@ import { servicesData } from '../data/portfolio';
           <!-- Bottom Footer Link -->
           <div class="service-card-footer">
             <a 
-              href="#contact" 
+              href={withBase('#contact')} 
               class="service-cta-link"
               aria-label={`Inquire about ${service.title}`}
             >

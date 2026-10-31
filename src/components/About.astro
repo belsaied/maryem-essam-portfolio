@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/paths';
 ---
 
 <section class="about-section section-padding" id="about" aria-label="About Maryem Essam">
@@ -112,7 +113,7 @@
             <strong>Ready to elevate your online presence?</strong>
             <span>Let's turn your social feeds into active, engaged customer communities.</span>
           </div>
-          <a href="#contact" class="btn btn-sage callout-btn">
+          <a href={withBase('#contact')} class="btn btn-sage callout-btn">
             Get In Touch
           </a>
         </div>

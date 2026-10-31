@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { siteConfig, faqData } from '../data/portfolio';
+import { withBase, toAbsoluteUrl } from '../utils/paths';
 
 interface Props {
   title?: string;
@@ -11,11 +12,12 @@ interface Props {
 const {
   title = siteConfig.meta.title,
   description = siteConfig.meta.description,
-  ogImage = '/og-image.svg'
+  ogImage = 'og-image.svg'
 } = Astro.props;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://maryemessam.github.io').toString();
-const resolvedOgImage = new URL(ogImage, Astro.site || 'https://maryemessam.github.io').toString();
+// Absolute canonical URL resolving site + base
+const canonicalUrl = toAbsoluteUrl('', Astro.site);
+const resolvedOgImage = toAbsoluteUrl(ogImage, Astro.site);
 
 // JSON-LD Structured Data for Person
 const personSchema = {
@@ -82,7 +84,13 @@ const faqSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL + "favicon.svg"} />
+
+    <!-- Favicons with explicit base path handling -->
+    <link rel="icon" type="image/svg+xml" href={withBase("favicon.svg")} />
+    <link rel="icon" type="image/x-icon" href={withBase("favicon.ico")} />
+    <link rel="shortcut icon" href={withBase("favicon.ico")} />
+    <link rel="apple-touch-icon" href={withBase("favicon.svg")} />
+
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
@@ -148,12 +156,22 @@ const faqSchema = {
           revealObserver.observe(el);
         });
 
-        // Smooth Scroll Offset for Sticky Navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth Scroll Offset for Sticky Navigation (handles hash anchors)
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
           anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (!targetId || targetId === '#') return;
-            const targetElement = document.querySelector(targetId);
+            const anchorEl = this as HTMLAnchorElement;
+            const hrefAttr = anchorEl.getAttribute('href') || '';
+            // If external link or empty, skip
+            if (anchorEl.target === '_blank' || hrefAttr.startsWith('tel:') || hrefAttr.startsWith('mailto:')) {
+              return;
+            }
+
+            const hashIndex = hrefAttr.indexOf('#');
+            if (hashIndex === -1) return;
+            const targetHash = hrefAttr.substring(hashIndex);
+            if (!targetHash || targetHash === '#') return;
+
+            const targetElement = document.querySelector(targetHash);
             if (targetElement) {
               e.preventDefault();
               const navHeight = 80;
@@ -162,9 +180,9 @@ const faqSchema = {
                 top: targetPosition,
                 behavior: 'smooth'
               });
-              // Focus for accessibility
+              history.pushState(null, '', targetHash);
               targetElement.setAttribute('tabindex', '-1');
-              targetElement.focus({ preventScroll: true });
+              (targetElement as HTMLElement).focus({ preventScroll: true });
             }
           });
         });

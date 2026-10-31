@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://maryemessam.github.io/the-social-edit/sitemap.xml
+Sitemap: https://belsaied.github.io/maryem-essam-portfolio/sitemap.xml

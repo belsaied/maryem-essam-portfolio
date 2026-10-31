@@ -68,7 +68,7 @@ export const siteConfig = {
   meta: {
     title: "Maryem Essam | Social Media Specialist & Moderator",
     description: "Meet Maryem Essam, a Social Media Specialist and Moderator specializing in content creation, community engagement, and social media communication.",
-    siteUrl: "https://maryemessam.github.io/the-social-edit", // Configurable for deployment
+    siteUrl: "https://belsaied.github.io/maryem-essam-portfolio",
     keywords: [
       "Maryem Essam",
       "Social Media Specialist",

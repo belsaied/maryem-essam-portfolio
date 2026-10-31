@@ -1,11 +1,12 @@
 ---
 import { navLinks, siteConfig } from '../data/portfolio';
+import { withBase } from '../utils/paths';
 ---
 
 <header class="site-header" id="navbar">
   <div class="container nav-container">
     <!-- Monogram / Logo -->
-    <a href="#hero" class="nav-brand" aria-label="Maryem Essam Home">
+    <a href={withBase('#hero')} class="nav-brand" aria-label="Maryem Essam Home">
       <span class="brand-monogram">ME<span class="brand-dot">.</span></span>
       <span class="brand-subtext">THE SOCIAL EDIT</span>
     </a>
@@ -15,7 +16,7 @@ import { navLinks, siteConfig } from '../data/portfolio';
       <ul class="nav-list">
         {navLinks.map((link) => (
           <li>
-            <a href={link.href} class="nav-link">
+            <a href={withBase(link.href)} class="nav-link">
               {link.label}
             </a>
           </li>
@@ -71,7 +72,7 @@ import { navLinks, siteConfig } from '../data/portfolio';
       <ul>
         {navLinks.map((link) => (
           <li>
-            <a href={link.href} class="mobile-nav-link">
+            <a href={withBase(link.href)} class="mobile-nav-link">
               {link.label}
             </a>
           </li>
@@ -411,7 +412,8 @@ import { navLinks, siteConfig } from '../data/portfolio';
 
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSectionId}`) {
+        const href = link.getAttribute('href') || '';
+        if (href.endsWith(`#${currentSectionId}`) || href === `#${currentSectionId}`) {
           link.classList.add('active');
         }
       });

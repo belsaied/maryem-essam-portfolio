@@ -1,5 +1,6 @@
 ---
 import { projectsData } from '../data/portfolio';
+import { withBase } from '../utils/paths';
 
 const categories = [
   "All",
@@ -186,7 +187,7 @@ const categories = [
             <strong>Interested in applying this strategy to your brand?</strong>
             <span>Let's collaborate on custom social media campaigns tailored to your goals.</span>
           </div>
-          <a href="#contact" class="btn btn-primary modal-action-btn" id="modal-contact-link">
+          <a href={withBase('#contact')} class="btn btn-primary modal-action-btn" id="modal-contact-link">
             <span>Discuss This Concept</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="7" y1="17" x2="17" y2="7"></line>
