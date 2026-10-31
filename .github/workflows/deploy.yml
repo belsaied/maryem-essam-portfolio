@@ -1,8 +1,11 @@
+
 name: Deploy Maryem Essam Portfolio to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+
   workflow_dispatch:
 
 permissions:
@@ -11,49 +14,33 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: github-pages
   cancel-in-progress: false
 
 jobs:
   build:
     name: Build Static Site
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v7
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Build and upload Astro site
+        uses: withastro/action@v6
         with:
-          node-version: 22
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
-      - name: Build with Astro
-        run: npm run build
-        env:
-          ASTRO_SITE: ${{ steps.pages.outputs.origin }}
-          ASTRO_BASE: ${{ steps.pages.outputs.base_path }}
-
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
+          node-version: 24
 
   deploy:
     name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
